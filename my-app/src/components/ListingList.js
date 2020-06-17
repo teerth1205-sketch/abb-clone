@@ -1,16 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
  
-const MoviesList = ({ listings }) => {
-  const renderMovies = this.props.listings.map(listingID =>
-    <Link key={listingID} to={`/listings/${listingID}`}>{movies[movieID].title}</Link>
+const ListingList = ({ listings }) => {
+  const renderListing = listings.map(listing =>
+    <Link key={listing.id} to={`/listings/${listing.id}`}>{listing.name}</Link>
   );
  
   return (
     <div>
-      {renderMovies}
+      {renderListing}
     </div>
   );
 };
  
-export default MoviesList;
+export default ListingList;

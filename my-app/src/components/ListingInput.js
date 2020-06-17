@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import cuid from 'cuid';
 
 class ListingInput extends Component {
 
@@ -6,30 +7,30 @@ class ListingInput extends Component {
     super(props);
 
     this.state = {
-    listing: {
+  
       name: '',
       address: '',
       summary: '', 
-        }
+        
       
     };
   };
 
   handleOnChange(event) {
     this.setState({
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value
     });
   }
 
   handleOnSubmit(event) {
     event.preventDefault();
-    this.props.addListing(this.state.listing)
+    this.props.addListing({...this.state, id: cuid()})
     this.setState({
-     listing: {
+      
       name: '',
       address: '',
       summary: '', 
-        }
+        
     });
   }
 
@@ -38,16 +39,19 @@ class ListingInput extends Component {
       <div>
         <form onSubmit={(event) => this.handleOnSubmit(event)} >
           <input
+            name="name"
             type="text"
-            value={this.state.listing.name}
+            value={this.state.name}
             onChange={(event) => this.handleOnChange(event)} />
             <input
+            name="address"
             type="text"
-            value={this.state.listing.address}
+            value={this.state.address}
             onChange={(event) => this.handleOnChange(event)} />
             <input
+            name="summary"
             type="text"
-            value={this.state.listing.summary}
+            value={this.state.summary}
             onChange={(event) => this.handleOnChange(event)} />
           <input type="submit" />
         </form>
