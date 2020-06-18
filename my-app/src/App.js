@@ -9,12 +9,13 @@ import Listing from './components/Listing'
 
 import Map from './containers/Map.js';
 
-
+import Navbar from './components/Navbar'
 
 function App() {
   return (
    <Router>
     <div className="App">
+      <Navbar />
       <Route exact path='/listings/:id' render={routerProps => <Listing {...routerProps} />} />
       <Route exact path='/listings' render={routerProps => <ListingsContainer {...routerProps} />} />
       <Route exact path='/map' render={routerProps => <Map />} />

@@ -38,6 +38,13 @@
 
 import React, { Component } from 'react';
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import { Marker } from '@react-google-maps/api'
+import { connect } from 'react-redux'
+import Geocode from "react-geocode";
+
+Geocode.setApiKey("AIzaSyD7-5oS0tqUlOmEuA4OTpk87U0Z01uPEWI");
+
+
 
 const containerStyle = {
   width: '400px',
@@ -45,12 +52,39 @@ const containerStyle = {
 };
 
 const center = {
-  lat: -3.745,
-  lng: -38.523
+  lat: 34.2856,
+  lng: -118.8820
 };
 
-export default class Map extends Component {
+const onLoad = marker => {
+  console.log('marker: ', marker)
+}
+
+let arr = []
+
+class Map extends Component {
+  state = {
+    locations : []
+  }
+  
+componentDidMount() {
+  this.props.listings.map(listing => {
+    return Geocode.fromAddress(listing.address).then(
+  response => {
+    const { lat, lng } = response.results[0].geometry.location;
+     this.setState((state) => {
+       return {locations: [...state.locations, {lat, lng}] }
+     })
+    
+  },
+  error => {
+    console.error(error);
+  }
+)})
+  
+}
   render() {
+   
     return (
       <LoadScript
         googleMapsApiKey="AIzaSyD7-5oS0tqUlOmEuA4OTpk87U0Z01uPEWI"
@@ -60,14 +94,19 @@ export default class Map extends Component {
           center={ center }
           zoom={ 10 }
         >
-          { /* Child components, such as markers, info windows, etc. */ }
-          <></>
+        
+          {this.state.locations.map(latlng => 
+       
+  <Marker position={latlng}/>) /* Child components, such as markers, info windows, etc. */ }
+         
         </GoogleMap>
       </LoadScript>
     )
   }
 }
 
+const mapStateToProps = state => ({ listings: state.listings})
+export default connect(mapStateToProps)(Map)
 
 // import React from 'react'
 // import { GoogleMap, LoadScript } from '@react-google-maps/api';

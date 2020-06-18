@@ -2,12 +2,12 @@ import cuid from 'cuid';
 export const cuidFn = cuid;
 
 export default function manageListing(state = {
-  listings: [{name:"home", id: 34}],
+  listings: [{name:"home", address: "thousand oaks",  id: 34}],
 }, action) {
   switch (action.type) {
     case 'ADD_LISTING':
       return {
-        ...state, listings: [...state.listings,action.listing]
+        ...state, listings: [...state.listings, action.listing]
       }
       
     case 'DELETE_LISTING':

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import cuid from 'cuid';
 
-class ListingInput extends Component {
+class ListingsInput extends Component {
 
   constructor(props) {
     super(props);
@@ -60,4 +60,4 @@ class ListingInput extends Component {
   }
 };
 
-export default ListingInput;
+export default ListingsInput;
