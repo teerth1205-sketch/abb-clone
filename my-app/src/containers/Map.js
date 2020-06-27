@@ -69,7 +69,7 @@ class Map extends Component {
   
 componentDidMount() {
   this.props.listings.map(listing => {
-    return Geocode.fromAddress(listing.address).then(
+    return Geocode.fromAddress(listing.location).then(
   response => {
     const { lat, lng } = response.results[0].geometry.location;
      this.setState((state) => {

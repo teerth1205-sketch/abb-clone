@@ -1,7 +1,10 @@
+
+
 class ListingsController < ApplicationController
     def create
+        binding.pry
        listing =  Listing.create(listing_params)
-       
+     
        render json: listing
     end 
     
@@ -10,10 +13,10 @@ class ListingsController < ApplicationController
         render json: listings
     end 
     
-    private
+
     
      def listing_params
-        params.require(:listing).permit(:location, :summary, :price, :name)
+        params.require(:listing).permit(:location, :name, :price, :summary)
      end 
     
     

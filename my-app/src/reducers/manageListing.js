@@ -2,7 +2,7 @@ import cuid from 'cuid';
 export const cuidFn = cuid;
 
 export default function manageListing(state = {
-  listings: [{name:"home", address: "thousand oaks",  id: 34}],
+  listings: [{name:"home", location: "thousand oaks",  id: 34}],
   users: []
 }, action) {
   switch (action.type) {

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import cuid from 'cuid';
+import addListing from '../actions/addListing.js'
+import { connect } from 'react-redux'
 
 class ListingsInput extends Component {
 
@@ -7,10 +9,12 @@ class ListingsInput extends Component {
     super(props);
 
     this.state = {
+    
   
       name: '',
-      address: '',
+      location: '',
       summary: '', 
+      price: 0
         
       
     };
@@ -24,13 +28,15 @@ class ListingsInput extends Component {
 
   handleOnSubmit(event) {
     event.preventDefault();
-    this.props.addListing({...this.state, id: cuid()})
+    this.props.addListing( {...this.state})
     this.setState({
+    
       
       name: '',
-      address: '',
+      location: '',
       summary: '', 
-        
+      price: 0
+      
     });
   }
 
@@ -44,14 +50,19 @@ class ListingsInput extends Component {
             value={this.state.name}
             onChange={(event) => this.handleOnChange(event)} />
             <input
-            name="address"
+            name="location"
             type="text"
-            value={this.state.address}
+            value={this.state.location}
             onChange={(event) => this.handleOnChange(event)} />
             <input
             name="summary"
             type="text"
             value={this.state.summary}
+            onChange={(event) => this.handleOnChange(event)} />
+             <input
+            name="price"
+            type="integer"
+            value={this.state.price}
             onChange={(event) => this.handleOnChange(event)} />
           <input type="submit" />
         </form>
@@ -60,4 +71,4 @@ class ListingsInput extends Component {
   }
 };
 
-export default ListingsInput;
+export default connect(null, {addListing})(ListingsInput)
