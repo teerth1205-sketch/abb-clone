@@ -2,10 +2,10 @@
   return (dispatch) => {
       console.log(data)
     // dispatch({ type: 'LOADING_CATS'})
-    fetch('https://7056fcf58cf84c3f92b471b1992c1bf2.vfs.cloud9.us-east-2.amazonaws.com/listings', {
+    fetch('http://localhost:3000/listings', {
       method: 'POST', 
       headers: {
-         'Content-Type': 'text/plain',
+         'Content-Type': 'application/json',
       },
       credentials: 'include',
       body: JSON.stringify({listing: data}), 

@@ -2,7 +2,7 @@
 
 class ListingsController < ApplicationController
     def create
-        binding.pry
+        
        listing =  Listing.create(listing_params)
      
        render json: listing

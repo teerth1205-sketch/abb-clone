@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
   allow do
-    origins 'https://7056fcf58cf84c3f92b471b1992c1bf2.vfs.cloud9.us-east-2.amazonaws.com:8082'
+    origins 'http://localhost:3001'
 
     resource '*',
       headers: :any,

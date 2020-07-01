@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 class ListingsContainer extends Component {
   
   componentDidMount(){
-    fetch('https://7056fcf58cf84c3f92b471b1992c1bf2.vfs.cloud9.us-east-2.amazonaws.com/listings', {
+    fetch('http://localhost:3000/listings', {
       credentials: 'include'
     }).then(r => r.json()).then(console.log)
   }
