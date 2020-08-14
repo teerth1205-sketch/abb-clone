@@ -1,5 +1,5 @@
 class Listing < ApplicationRecord
-   has_many :days
+  has_many :days
    belongs_to :user,  required: false
    include Rails.application.routes.url_helpers
 

@@ -13,13 +13,17 @@ import Navbar from './components/Navbar'
 
 import { connect } from 'react-redux'
 
-function App() {
+
+import loadUsers from './actions/loadUsers.js';
+
+function App(props) {
+ 
   return (
    <Router>
     <div className="App">
       <Navbar />
-      <Route exact path='/listings/:id' render={routerProps => <Listing  {...routerProps} />} />
-      <Route exact path='/listings' render={routerProps => <ListingsContainer {...routerProps} />} />
+      <Route exact path='/listings/:id' render={routerProps => <Listing  {...routerProps}/>} />
+      <Route exact path='/listings' render={routerProps => <ListingsContainer {...routerProps} loadUsers={props.loadUsers}/>} />
       <Route exact path='/map' render={routerProps => <Map />} />
       
       
@@ -29,6 +33,6 @@ function App() {
 }
 
 
-export default App
+export default connect(null, {loadUsers})(App)
 
 

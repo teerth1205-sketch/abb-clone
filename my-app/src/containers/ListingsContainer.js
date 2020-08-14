@@ -3,11 +3,15 @@ import ListingsInput from '../components/ListingInput'
 import ListingsList from '../components/ListingList'
 import { connect } from 'react-redux'
 import loadListings from '../actions/loadListings.js'
+import loadUsers from '../actions/loadUsers.js'
 
 class ListingsContainer extends Component {
   
   componentDidMount(){
+  
     this.props.loadListings();
+    this.props.loadUsers();
+    
   }
   render() {
     return (

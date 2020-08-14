@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import cuid from 'cuid';
 import DayPicker, { DateUtils } from 'react-day-picker';
+
 import 'react-day-picker/lib/style.css';
 
 class BookListing extends Component {
@@ -9,9 +9,10 @@ class BookListing extends Component {
     super(props);
     this.handleDayClick = this.handleDayClick.bind(this);
     this.state = {
-       user: '',
+      user: '',
       selectedDays: [],
-    
+      id: this.props.id,
+      users: this.props.users
     };
   };
 
@@ -35,17 +36,42 @@ class BookListing extends Component {
 
   handleOnSubmit(event) {
     event.preventDefault();
-    this.props.addUser({...this.state, id: this.props.id})
+    console.log(this.state.selectedDays)
+    let users = [...new Set(this.props.users)]; 
+    return this.state.selectedDays.map(daym => {
+      debugger
+       this.props.addUserToListing(daym, this.props.id, this.state.user)
+      
+    }),
     this.setState({
       user: '',
       selectedDays: []
+      
         
     });
   }
 
+
+  // disableDays = () => {
+  //   let arr = []; 
+  //   debugger
+  //   this.props.days.forEach(day => {
+  //     let year = parseInt(day.date.slice(0,4)) 
+  //     let month= parseInt(day.date.slice(5,7)) 
+  //     let dayVal = parseInt(day.date.slice(8,10))
+    
+  //     arr.push(new Date(year, month, dayVal))
+  //   })
+  //   return arr
+  // }
+
   render() {
+   
+    // let users = [...new Set(this.props.users)]; 
     return (
+      
       <div>
+        
         <form onSubmit={(event) => this.handleOnSubmit(event)} >
           <input
             name="user"
@@ -55,7 +81,7 @@ class BookListing extends Component {
             <DayPicker
               selectedDays={this.state.selectedDays}
               onDayClick={this.handleDayClick}
-              disabledDays={this.state.selectedDays.map(day => {new Date(day)})}
+              // disabledDays={}
                    
             />
           <input type="submit" />
@@ -65,4 +91,7 @@ class BookListing extends Component {
   }
 };
 
-export default BookListing;
+
+
+
+export default BookListing

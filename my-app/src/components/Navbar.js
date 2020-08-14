@@ -39,7 +39,7 @@ class Navbar extends React.Component {
           activeStyle={{
             background: 'darkblue'
           }}
-        >Map</NavLink>
+       >Map</NavLink>
       </div>
     )
   }

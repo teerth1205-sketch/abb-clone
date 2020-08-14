@@ -1,7 +1,8 @@
 class DaysController < ApplicationController
     
     def create 
-        day = Day.create(day_params)
+        user = User.find_or_create_by(name: params["username"])
+        day = user.days.create(day_params)
         render json: day
     end 
     
@@ -13,7 +14,7 @@ class DaysController < ApplicationController
     private
     
     def day_params
-        params.require(:day).permit(:date, :user_id, :listin_id) 
+        params.require(:day).permit(:date, :username, :user_id, :listing_id) 
     end
     
 end 

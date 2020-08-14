@@ -2,7 +2,7 @@
 
 class ListingsController < ApplicationController
     def create
-        
+       
        listing =  Listing.create(listing_params)
      
        render json: listing
