@@ -12,11 +12,11 @@ function Listing(listing) {
     let arr = [];
 
     listing.listing.days.forEach(day => {
-        arr.push({id: day.user.id, name: day.user.name})
+        arr.push(`${day.user.id}  ${day.user.name}`)
     })
-           
-
-           return arr
+    let users = [...new Set(arr)]
+debugger
+           return users
          
     }
     debugger

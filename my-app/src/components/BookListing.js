@@ -12,7 +12,8 @@ class BookListing extends Component {
       user: '',
       selectedDays: [],
       id: this.props.id,
-      users: this.props.users
+      users: this.props.users,
+      tempUsers: []
     };
   };
 
@@ -38,14 +39,19 @@ class BookListing extends Component {
     event.preventDefault();
     console.log(this.state.selectedDays)
     let users = [...new Set(this.props.users)]; 
+    let array = [...this.state.tempUsers, this.state.user]
+    
     return this.state.selectedDays.map(daym => {
       debugger
        this.props.addUserToListing(daym, this.props.id, this.state.user)
       
     }),
+
     this.setState({
       user: '',
-      selectedDays: []
+      selectedDays: [],
+      tempUsers: array
+
       
         
     });
@@ -66,12 +72,22 @@ class BookListing extends Component {
   // }
 
   render() {
-   
+    // if (this.state.tempUsers === null) {
+    //   let users = this.props.users.map(user => {
+    //     return <div>{user.name}</div>
+    //    })
+    // } else {
+      let arr = [...this.props.users, ...this.state.tempUsers]
+      let tempArr = arr.map(user => {
+        return <div>{user}</div>
+      })
+    
+     
     // let users = [...new Set(this.props.users)]; 
     return (
       
       <div>
-        
+        {arr}
         <form onSubmit={(event) => this.handleOnSubmit(event)} >
           <input
             name="user"

@@ -20,6 +20,8 @@ class ListingsInput extends Component {
     };
   };
 
+
+  
   handleOnChange(event) {
     this.setState({
       [event.target.name]: event.target.value
@@ -28,6 +30,9 @@ class ListingsInput extends Component {
 
   handleOnSubmit(event) {
     event.preventDefault();
+    if (this.state.name === '' || this.state.location === '' || this.state.summary === '') {
+      alert("all filed must be filled out")
+    } else {
     this.props.addListing( {...this.state})
     this.setState({
     
@@ -38,32 +43,61 @@ class ListingsInput extends Component {
       price: 0
       
     });
+   }
   }
 
   render() {
+    const divStyle = {  
+      margin: "auto",
+      borderradius: '5px',
+      backgroundcolor: '#f2f2f2',
+      padding: '20px'
+  }
+
+    const inputStyle = {
+      width: '50%',
+      padding: '12px 20px',
+      margin: '3px 0',
+      display: 'inline-block',
+      border: '1px solid #ccc',
+      borderradius: '50px',
+      boxsizing: 'border-box'
+    }
     return (
-      <div>
+      <div style={divStyle}>
         <form onSubmit={(event) => this.handleOnSubmit(event)} >
-          <input
+        NAME ---
+        <br></br>
+          <input style={inputStyle}
             name="name"
             type="text"
             value={this.state.name}
             onChange={(event) => this.handleOnChange(event)} />
-            <input
+            <br></br>
+        LOCATION ---
+            <br></br>
+            <input style={inputStyle}
             name="location"
             type="text"
             value={this.state.location}
             onChange={(event) => this.handleOnChange(event)} />
-            <input
+            <br></br>
+        SUMMARY ---
+          <br></br>
+            <input style={inputStyle}
             name="summary"
             type="text"
             value={this.state.summary}
             onChange={(event) => this.handleOnChange(event)} />
-             <input
+            <br></br>
+        PRICE ---
+          <br></br>
+             <input style={inputStyle}
             name="price"
             type="integer"
             value={this.state.price}
             onChange={(event) => this.handleOnChange(event)} />
+            <br></br>
           <input type="submit" />
         </form>
       </div>

@@ -14,6 +14,7 @@ class ListingsContainer extends Component {
     
   }
   render() {
+    debugger
     return (
       <div>
         <ListingsInput />

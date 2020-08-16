@@ -11,6 +11,8 @@ import Map from './containers/Map.js';
 
 import Navbar from './components/Navbar'
 
+import Home from './Home.js';
+
 import { connect } from 'react-redux'
 
 
@@ -25,6 +27,7 @@ function App(props) {
       <Route exact path='/listings/:id' render={routerProps => <Listing  {...routerProps}/>} />
       <Route exact path='/listings' render={routerProps => <ListingsContainer {...routerProps} loadUsers={props.loadUsers}/>} />
       <Route exact path='/map' render={routerProps => <Map />} />
+      <Route exact path='/' render={routerProps => <Home />} />
       
       
     </div>
