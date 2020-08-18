@@ -5,19 +5,28 @@ import addUserToListing from '../actions/addUserToListing.js';
 import AddedUsersToListing from './AddedUsersToListing.js';
 
 
-function Listing(listing) {
+function Listing(props) {
+
 
    const getUsersForListing = () => {
-        
+    if (props.listing){
     let arr = [];
-
-    listing.listing.days.forEach(day => {
+debugger
+    props.listing.days.forEach(day => {
         arr.push(`${day.user.id}  ${day.user.name}`)
     })
     let users = [...new Set(arr)]
+    let newArr = []
+    users.forEach(user => {
+        let newUser = user.slice(6,user.length)
+        newArr.push(newUser)
+    })
 debugger
-           return users
-         
+           return newArr
+} else {
+    console.log("loading")
+}
+
     }
     debugger
     const loadUserss = () => {
@@ -29,17 +38,20 @@ debugger
     })
     
     }
-    
+    if (props.listing) {
     return (
-    
+
         <div>
             
            
-            <AddedUsersToListing users={getUsersForListing()}/> 
-            <BookListing  id={listing.match.params.id} days={listing.listing.days} addUserToListing={listing.addUserToListing} users={getUsersForListing()}/>
+            <AddedUsersToListing users={props.listing.days}/> 
+            <BookListing  id={props.match.params.id} days={props.listing.days} addUserToListing={props.addUserToListing} users={getUsersForListing()}/>
           
         </div>
         )
+    } else {
+        return "hello"
+    }
         
     
 }

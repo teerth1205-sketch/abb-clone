@@ -4,6 +4,7 @@ import DayPicker, { DateUtils } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 
 class BookListing extends Component {
+  
 
   constructor(props) {
     super(props);
@@ -13,6 +14,7 @@ class BookListing extends Component {
       selectedDays: [],
       id: this.props.id,
       users: this.props.users,
+      days: this.props.days,
       tempUsers: []
     };
   };
@@ -38,8 +40,8 @@ class BookListing extends Component {
   handleOnSubmit(event) {
     event.preventDefault();
     console.log(this.state.selectedDays)
-    let users = [...new Set(this.props.users)]; 
-    let array = [...this.state.tempUsers, this.state.user]
+    // let users = [...new Set(this.props.users)]; 
+     let array = [...this.state.tempUsers, this.state.user]
     
     return this.state.selectedDays.map(daym => {
       debugger
@@ -57,7 +59,25 @@ class BookListing extends Component {
     });
   }
 
+  // componentDidMount() {
+  //   let arr = [...this.props.users, ...this.state.tempUsers]
+  //     let tempArr = arr.map(user => {
+  //       debugger
+  //      let days = this.props.days.filter(day => day.user.name === user)
+  //      let showDays = days.map(day =>{
+  //        console.log(day.date)
+  //        return <h6>{day.date}</h6>
+  //      })
+  //       return (
+  //       <div style={div}>{user}<h6>{showDays}</h6></div>
+  //       )
 
+        
+
+  //     })
+
+
+  // }
   // disableDays = () => {
   //   let arr = []; 
   //   debugger
@@ -77,17 +97,41 @@ class BookListing extends Component {
     //     return <div>{user.name}</div>
     //    })
     // } else {
-      let arr = [...this.props.users, ...this.state.tempUsers]
+
+      const div = {
+        boxshadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
+        transition: '0.3s',
+        width: '300px',
+        border: '15px solid green',
+        padding: '50px',
+        margin: '20px',
+        overflow: 'scroll'
+      }
+     
+      let arr = [...this.state.users]
       let tempArr = arr.map(user => {
-        return <div>{user}</div>
+        debugger
+       let days = this.state.days.filter(day => day.user.name === user)
+       let showDays = days.map(day =>{
+         console.log(day.date)
+         return <h6>{day.date}</h6>
+       })
+        return (
+        <div style={div}>{user}<h6>{showDays}</h6></div>
+        )
+
+        
+
       })
+
+      
     
      
     // let users = [...new Set(this.props.users)]; 
     return (
       
       <div>
-        {arr}
+       
         <form onSubmit={(event) => this.handleOnSubmit(event)} >
           <input
             name="user"
@@ -102,6 +146,12 @@ class BookListing extends Component {
             />
           <input type="submit" />
         </form>
+        <div>
+          USERS OF THIS LISTING:
+          <br></br>
+          {tempArr}
+        </div>
+       
       </div>
     );
   }

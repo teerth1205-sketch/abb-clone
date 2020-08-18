@@ -7,12 +7,12 @@ import loadUsers from '../actions/loadUsers.js'
 
 class ListingsContainer extends Component {
   
-  componentDidMount(){
+  // componentDidMount(){
   
-    this.props.loadListings();
-    this.props.loadUsers();
+  //   this.props.loadListings();
     
-  }
+    
+  // }
   render() {
     debugger
     return (

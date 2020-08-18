@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { Component } from 'react';
 // import ReactDOM from 'react-dom';
 import ListingsContainer from './containers/ListingsContainer.js'
 //import Navbar from './Navbar'
@@ -15,17 +15,24 @@ import Home from './Home.js';
 
 import { connect } from 'react-redux'
 
+import loadListings from './actions/loadListings.js'
 
-import loadUsers from './actions/loadUsers.js';
-
-function App(props) {
+class App extends Component {
  
+  componentDidMount(){
+  
+    this.props.loadListings();
+    
+    
+  }
+
+  render() {
   return (
    <Router>
     <div className="App">
       <Navbar />
       <Route exact path='/listings/:id' render={routerProps => <Listing  {...routerProps}/>} />
-      <Route exact path='/listings' render={routerProps => <ListingsContainer {...routerProps} loadUsers={props.loadUsers}/>} />
+      <Route exact path='/listings' render={routerProps => <ListingsContainer {...routerProps} loadListings={this.props.loadListings}/>} />
       <Route exact path='/map' render={routerProps => <Map />} />
       <Route exact path='/' render={routerProps => <Home />} />
       
@@ -33,9 +40,10 @@ function App(props) {
     </div>
   </Router>
   );
+  }
 }
 
 
-export default connect(null, {loadUsers})(App)
+export default connect(null, {loadListings})(App)
 
 
