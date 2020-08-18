@@ -15,7 +15,7 @@ class BookListing extends Component {
       id: this.props.id,
       users: this.props.users,
       days: this.props.days,
-      tempUsers: []
+     
     };
   };
 
@@ -41,10 +41,10 @@ class BookListing extends Component {
     event.preventDefault();
     console.log(this.state.selectedDays)
     // let users = [...new Set(this.props.users)]; 
-     let array = [...this.state.tempUsers, this.state.user]
+    
     
     return this.state.selectedDays.map(daym => {
-      debugger
+      
        this.props.addUserToListing(daym, this.props.id, this.state.user)
       
     }),
@@ -52,12 +52,33 @@ class BookListing extends Component {
     this.setState({
       user: '',
       selectedDays: [],
-      tempUsers: array
+      
 
       
         
     });
   }
+
+//    getUsersForListing = () => {
+//     if (props.listing){
+//     let arr = [];
+// debugger
+//     props.listing.days.forEach(day => {
+//         arr.push(`${day.user.id}  ${day.user.name}`)
+//     })
+//     let users = [...new Set(arr)]
+//     let newArr = []
+//     users.forEach(user => {
+//         let newUser = user.slice(6,user.length)
+//         newArr.push(newUser)
+//     })
+// debugger
+//            return newArr
+// } else {
+//     console.log("loading")
+// }
+
+//     }
 
   // componentDidMount() {
   //   let arr = [...this.props.users, ...this.state.tempUsers]
@@ -108,10 +129,10 @@ class BookListing extends Component {
         overflow: 'scroll'
       }
      
-      let arr = [...this.state.users]
+      let arr = [...this.props.users]
       let tempArr = arr.map(user => {
-        debugger
-       let days = this.state.days.filter(day => day.user.name === user)
+       
+       let days = this.props.days.filter(day => day.user.name === user)
        let showDays = days.map(day =>{
          console.log(day.date)
          return <h6>{day.date}</h6>

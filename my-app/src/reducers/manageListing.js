@@ -18,8 +18,8 @@ export default function manageListing(state = {
      
       // const listing = state.listings.filter(listing => listing.id == action.day.listing_id);
       const newListing = state.listings.filter(listing => listing.id == action.day.listing_id);
-      newListing[0].days.push(action.day)
-
+      // newListing[0].days.push(action.day)
+      let array =[{...newListing[0], days: [...newListing[0].days, action.day]}]
       // if (listing.days === undefined) {
       //   listing.days = []
       //   listing.days += action.day
@@ -29,9 +29,10 @@ export default function manageListing(state = {
       // listing.days.push(action.day)
        
      // state.listings.push(newListing)
+     debugger
       return {
         ...state, 
-        listings: [...state.listings.slice(0, state.listings.indexOf(newListing[0])), newListing[0], ...state.listings.slice(state.listings.indexOf(newListing[0]) + 1, state.listings.length) ]
+        listings: [...state.listings.slice(0, state.listings.indexOf(newListing[0])), array[0], ...state.listings.slice(state.listings.indexOf(newListing[0]) + 1, state.listings.length) ]
       }
     case 'LOAD_LISTINGS': 
   
