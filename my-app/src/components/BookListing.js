@@ -4,6 +4,7 @@ import DayPicker, { DateUtils } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 
 class BookListing extends Component {
+
   
 
   constructor(props) {
@@ -15,6 +16,7 @@ class BookListing extends Component {
       id: this.props.id,
       users: this.props.users,
       days: this.props.days,
+      count: 0
      
     };
   };
@@ -118,7 +120,6 @@ class BookListing extends Component {
     //     return <div>{user.name}</div>
     //    })
     // } else {
-
       const div = {
         boxshadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
         transition: '0.3s',
@@ -142,10 +143,10 @@ class BookListing extends Component {
         )
 
         
-
+        
       })
 
-      
+
     
      
     // let users = [...new Set(this.props.users)]; 

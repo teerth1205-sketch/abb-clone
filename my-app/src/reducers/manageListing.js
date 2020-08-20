@@ -29,7 +29,7 @@ export default function manageListing(state = {
       // listing.days.push(action.day)
        
      // state.listings.push(newListing)
-     debugger
+   
       return {
         ...state, 
         listings: [...state.listings.slice(0, state.listings.indexOf(newListing[0])), array[0], ...state.listings.slice(state.listings.indexOf(newListing[0]) + 1, state.listings.length) ]

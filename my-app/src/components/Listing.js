@@ -14,7 +14,7 @@ function Listing(props) {
 
     props.listing.days.forEach(day => {
         if(day.user.id){
-        arr.push(`${day.user.id}  ${day.user.name}`)
+        arr.push(`${day.user.name}`)
         } else {
 
         }
@@ -22,10 +22,10 @@ function Listing(props) {
     let users = [...new Set(arr)]
     let newArr = []
     users.forEach(user => {
-        let newUser = user.slice(6,user.length)
-        newArr.push(newUser)
+        // let newUser = user.slice(6,user.length)
+        newArr.push(user)
     })
-
+    
            return newArr
 } else {
     console.log("loading")

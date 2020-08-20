@@ -7,24 +7,79 @@ import loadUsers from '../actions/loadUsers.js'
 
 class ListingsContainer extends Component {
   
-  // componentDidMount(){
+  constructor(props) {
+    super(props);
+
+    this.state = {
+    
   
-  //   this.props.loadListings();
+      input: ''
+        
+      
+    };
+  };
+
+
     
+  handleOnChangeInput = (event) => {
     
+      this.setState({
+        input: event.target.value
+      });
+    
+
+  }
   // }
   render() {
-    debugger
+  if (this.state.input) {
+     let listings = this.props.listings.filter(input => {
+         return(
+
+        input.user.name.includes(this.state.input)
+         )
+      })
+    return (
+      <div>
+      <ListingsInput />
+       <form>
+       Search Listings:
+        <input
+          name="input"
+          type="text"
+          value={this.state.input}
+          onChange={(event) => this.handleOnChangeInput(event)} 
+          />
+       
+      </form>
+      <ListingsList
+        listings={listings}
+      />
+     
+    </div>
+    
+    )
+  } else {
     return (
       <div>
         <ListingsInput />
+        <form>
+        Search Listings:
+        <input
+          name="input"
+          type="text"
+          value={this.state.input}
+          onChange={(event) => this.handleOnChangeInput(event)} 
+          />
+       
+       </form>
         <ListingsList
           listings={this.props.listings}
           deleteListing={this.props.deleteListing}
         />
-        
+       
       </div>
     );
+  }
   }
 }
 
